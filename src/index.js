@@ -1,5 +1,6 @@
 const express = require("express");
 const { PORT } = require("./config/server.config");
+const connectToDb = require("./config/db.config");
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.get("/ping", (req, res) => {
   res.json({ message: "Ping Successfull" });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server Is Running On Port ${PORT}`);
+  await connectToDb();
+  console.log("Successfully Connected To DB Server");
 });
