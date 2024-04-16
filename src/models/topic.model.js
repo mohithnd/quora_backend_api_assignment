@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const topicSchema = new mongoose.Schema(
   {
@@ -13,6 +14,8 @@ const topicSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+topicSchema.plugin(uniqueValidator);
 
 const Topic = mongoose.model("Topic", topicSchema);
 
