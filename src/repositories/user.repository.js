@@ -13,6 +13,16 @@ class UserRepository {
       throw err;
     }
   }
+
+  async getUser(userId) {
+    try {
+      const user = await User.findById(userId);
+      return user;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
 }
 
 module.exports = UserRepository;

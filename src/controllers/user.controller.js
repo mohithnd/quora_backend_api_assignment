@@ -20,7 +20,22 @@ async function addUser(req, res, next) {
   }
 }
 
-async function getUser(req, res, next) {}
+async function getUser(req, res, next) {
+  try {
+    const user = await userService.getUser(req.params.userId);
+    return res.status(200).json({
+      message: "User Retrieved Successfully",
+      success: true,
+      data: user,
+    });
+  } catch (err) {
+    return res.json({
+      message: "Something Went Wrong",
+      success: false,
+      error: err,
+    });
+  }
+}
 
 async function updateUser(req, res, next) {}
 
