@@ -37,7 +37,27 @@ async function getUser(req, res, next) {
   }
 }
 
-async function updateUser(req, res, next) {}
+async function updateUser(req, res, next) {
+  try {
+    const user = await userService.updateUser(
+      req.params.userId,
+      req.body.username,
+      req.body.email,
+      req.body.bio
+    );
+    return res.status(200).json({
+      message: "User Updated Successfully",
+      success: true,
+      data: user,
+    });
+  } catch (err) {
+    return res.json({
+      message: "Something Went Wrong",
+      success: false,
+      error: err,
+    });
+  }
+}
 
 module.exports = {
   addUser,

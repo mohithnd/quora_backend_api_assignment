@@ -15,6 +15,16 @@ class UserService {
     }
     return user;
   }
+
+  async updateUser(userId, username, email, bio) {
+    const user = await this.userRepository.updateUser(
+      userId,
+      username,
+      email,
+      bio
+    );
+    return user;
+  }
 }
 
 module.exports = UserService;
