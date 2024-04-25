@@ -25,7 +25,25 @@ async function addQuestion(req, res, next) {
   }
 }
 
-async function getQuestions(req, res, next) {}
+async function getQuestions(req, res, next) {
+  try {
+    const questions = await questionService.searchQuestions(
+      req.query.text,
+      req.query.tag
+    );
+    return res.status(200).json({
+      message: "Question Fetched Successfully",
+      success: true,
+      data: questions,
+    });
+  } catch (err) {
+    return res.json({
+      message: "Something Went Wrong",
+      success: false,
+      error: err,
+    });
+  }
+}
 
 module.exports = {
   addQuestion,
