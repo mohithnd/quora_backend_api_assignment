@@ -11,6 +11,11 @@ class AnswerService {
     );
     return answer;
   }
+
+  async updateAnswer(answerId, text) {
+    const answer = await this.answerRepository.updateAnswer(answerId, text);
+    return answer;
+  }
 }
 
 module.exports = AnswerService;

@@ -24,7 +24,25 @@ async function addAnswer(req, res, next) {
   }
 }
 
-async function updateAnswer(req, res, next) {}
+async function updateAnswer(req, res, next) {
+  try {
+    const answer = await answerService.updateAnswer(
+      req.params.answerId,
+      req.body.text
+    );
+    return res.status(200).json({
+      message: "Answer Updated Successfully",
+      success: true,
+      data: answer,
+    });
+  } catch (err) {
+    return res.json({
+      message: "Something Went Wrong",
+      success: false,
+      error: err,
+    });
+  }
+}
 
 module.exports = {
   addAnswer,

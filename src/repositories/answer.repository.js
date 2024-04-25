@@ -24,6 +24,21 @@ class AnswerRepository {
       throw err;
     }
   }
+
+  async updateAnswer(answerId, text) {
+    try {
+      const answer = await Answer.findById(answerId);
+      if (!answer) {
+        throw "Answer Not Found";
+      }
+      answer.text = text;
+      await answer.save();
+      return answer;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
 }
 
 module.exports = AnswerRepository;
