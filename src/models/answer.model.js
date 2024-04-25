@@ -18,10 +18,12 @@ const answerSchema = new mongoose.Schema(
       ref: "Question",
       required: true,
     },
-    likes: {
-      type: Number,
-      default: 0,
-    },
+    likes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+      },
+    ],
   },
   {
     timestamps: true,

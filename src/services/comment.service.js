@@ -20,6 +20,11 @@ class CommentService {
     );
     return comment;
   }
+
+  async likeIt(id, userId) {
+    const comment = await this.commentRepository.likeIt(id, userId);
+    return comment;
+  }
 }
 
 module.exports = CommentService;

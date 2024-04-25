@@ -16,6 +16,11 @@ class AnswerService {
     const answer = await this.answerRepository.updateAnswer(answerId, text);
     return answer;
   }
+
+  async likeIt(id, userId) {
+    const comment = await this.answerRepository.likeIt(id, userId);
+    return comment;
+  }
 }
 
 module.exports = AnswerService;

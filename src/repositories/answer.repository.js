@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const { Answer } = require("../models");
 const { Question } = require("../models");
 const { User } = require("../models");
@@ -32,6 +33,28 @@ class AnswerRepository {
         throw "Answer Not Found";
       }
       answer.text = text;
+      await answer.save();
+      return answer;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  async likeIt(id, userId) {
+    try {
+      let user = await User.findById(userId);
+      if (!user) {
+        throw "User Not Found";
+      }
+      let answer = await Answer.findById(id);
+      if (!answer) {
+        throw "Answer Not Found";
+      }
+      if (!answer.likes) {
+        answer.likes = [];
+      }
+      answer.likes.push(new mongoose.Types.ObjectId(userId));
       await answer.save();
       return answer;
     } catch (err) {

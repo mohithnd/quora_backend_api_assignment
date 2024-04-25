@@ -17,6 +17,11 @@ class QuestionService {
     const questions = await this.questionRepository.searchQuestions(text, tag);
     return questions;
   }
+
+  async likeIt(id, userId) {
+    const comment = await this.questionRepository.likeIt(id, userId);
+    return comment;
+  }
 }
 
 module.exports = QuestionService;

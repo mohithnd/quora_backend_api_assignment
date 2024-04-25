@@ -1,5 +1,7 @@
+const mongoose = require("mongoose");
 const { Comment } = require("../models");
 const { Answer } = require("../models");
+const { User } = require("../models");
 
 class CommentRepository {
   async createCommentOnAnswer(answerId, userId, text) {
@@ -31,6 +33,28 @@ class CommentRepository {
         user_id: userId,
         parent_id: commentId,
       });
+      return comment;
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  }
+
+  async likeIt(id, userId) {
+    try {
+      let user = await User.findById(userId);
+      if (!user) {
+        throw "User Not Found";
+      }
+      let comment = await Comment.findById(id);
+      if (!comment) {
+        throw "Comment Not Found";
+      }
+      if (!comment.likes) {
+        comment.likes = [];
+      }
+      comment.likes.push(new mongoose.Types.ObjectId(userId));
+      await comment.save();
       return comment;
     } catch (err) {
       console.log(err);
