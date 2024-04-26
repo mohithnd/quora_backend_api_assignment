@@ -27,6 +27,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     timestamps: true,

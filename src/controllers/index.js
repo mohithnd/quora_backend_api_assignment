@@ -5,4 +5,5 @@ module.exports = {
   questionController: require("./question.controller"),
   topicController: require("./topic.controller"),
   userController: require("./user.controller"),
+  followController: require("./follow.controller"),
 };
