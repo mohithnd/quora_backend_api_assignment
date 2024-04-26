@@ -1,0 +1,2 @@
+PORT='port number on which you want to run that server'
+MONGODB_URI='connection string for connection of mongodb server whether it is local or atlas or other cloud hosted'
