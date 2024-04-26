@@ -15,7 +15,7 @@ async function followUser(req, res, next) {
       data: user,
     });
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: "Something Went Wrong",
       success: false,
       error: err,

@@ -22,7 +22,7 @@ async function addLikeOnQuestion(req, res, next) {
       data: question,
     });
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: "Something Went Wrong",
       success: false,
       error: err,
@@ -39,7 +39,7 @@ async function addLikeOnAnswer(req, res, next) {
       data: answer,
     });
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: "Something Went Wrong",
       success: false,
       error: err,
@@ -56,7 +56,7 @@ async function addLikeOnComment(req, res, next) {
       data: comment,
     });
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: "Something Went Wrong",
       success: false,
       error: err,

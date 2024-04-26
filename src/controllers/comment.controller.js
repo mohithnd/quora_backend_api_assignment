@@ -16,7 +16,7 @@ async function addCommentOnAnswer(req, res, next) {
       data: comment,
     });
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: "Something Went Wrong",
       success: false,
       error: err,
@@ -37,7 +37,7 @@ async function addCommentOnComment(req, res, next) {
       data: comment,
     });
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: "Something Went Wrong",
       success: false,
       error: err,

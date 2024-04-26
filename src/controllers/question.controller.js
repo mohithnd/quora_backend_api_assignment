@@ -17,7 +17,7 @@ async function addQuestion(req, res, next) {
       data: question,
     });
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: "Something Went Wrong",
       success: false,
       error: err,
@@ -37,7 +37,7 @@ async function getQuestions(req, res, next) {
       data: questions,
     });
   } catch (err) {
-    return res.json({
+    return res.status(404).json({
       message: "Something Went Wrong",
       success: false,
       error: err,
