@@ -1,13 +1,18 @@
 const mongoose = require("mongoose");
 const { Question } = require("../models/");
 const { User } = require("../models/");
+const { NotFound } = require("../errors");
+const { BadRequest } = require("../errors");
 
 class QuestionRepository {
   async createQuestion(userId, title, body, topicTags) {
     try {
+      if (!userId) {
+        throw new BadRequest("userId");
+      }
       const user = await User.findById(userId);
       if (user == null) {
-        throw "User Not Found";
+        throw new NotFound("User", userId);
       }
       const question = await Question.create({
         title: title,
@@ -43,13 +48,19 @@ class QuestionRepository {
 
   async likeIt(id, userId) {
     try {
+      if (!userId) {
+        throw new BadRequest("userId");
+      }
+      if (!id) {
+        throw new BadRequest("id");
+      }
       let user = await User.findById(userId);
       if (!user) {
-        throw "User Not Found";
+        throw new NotFound("User", userId);
       }
       let question = await Question.findById(id);
       if (!question) {
-        throw "Question Not Found";
+        throw new NotFound("Question", id);
       }
       if (!question.likes) {
         question.likes = [];

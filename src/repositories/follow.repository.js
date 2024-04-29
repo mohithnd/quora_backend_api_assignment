@@ -1,16 +1,24 @@
 const { User } = require("../models");
 const mongoose = require("mongoose");
+const { NotFound } = require("../errors");
+const { BadRequest } = require("../errors");
 
 class UserRepository {
   async followUser(userId, targetUserId) {
     try {
+      if (!userId) {
+        throw new BadRequest("userId");
+      }
+      if (!targetUserId) {
+        throw new BadRequest("targetUserId");
+      }
       const user = await User.findById(userId);
       if (!user) {
-        throw "User Not Found";
+        throw new NotFound("User", userId);
       }
       const targetUser = await User.findById(targetUserId);
       if (!targetUser) {
-        throw "Target User Not Found";
+        throw new NotFound("Target User", userId);
       }
       if (userId == targetUserId) {
         throw "User Can Not Follow It Self";

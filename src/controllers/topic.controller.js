@@ -12,11 +12,7 @@ async function addTopic(req, res, next) {
       data: topic,
     });
   } catch (err) {
-    return res.status(404).json({
-      message: "Something Went Wrong",
-      success: false,
-      error: err,
-    });
+    next(err);
   }
 }
 
@@ -29,11 +25,7 @@ async function getTopics(req, res, next) {
       data: topics,
     });
   } catch (err) {
-    return res.status(404).json({
-      message: "Something Went Wrong",
-      success: false,
-      error: err,
-    });
+    next(err);
   }
 }
 

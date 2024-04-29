@@ -1,8 +1,12 @@
 const { Topic } = require("../models");
+const { BadRequest } = require("../errors");
 
 class TopicRepository {
   async createTopic(name) {
     try {
+      if (!name) {
+        throw new BadRequest("name");
+      }
       const topic = await Topic.create({
         name: name,
       });
