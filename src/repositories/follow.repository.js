@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { NotFound } = require("../errors");
 const { BadRequest } = require("../errors");
 
-class UserRepository {
+class FollowRepository {
   async followUser(userId, targetUserId) {
     try {
       if (!userId) {
@@ -36,4 +36,4 @@ class UserRepository {
   }
 }
 
-module.exports = UserRepository;
+module.exports = FollowRepository;
